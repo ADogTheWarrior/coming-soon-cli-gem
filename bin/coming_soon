@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+ComingSoon::CLI.new.call
