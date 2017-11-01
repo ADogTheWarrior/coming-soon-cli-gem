@@ -1,8 +1,18 @@
 class Movie
   @@all = []
+  attr_accessor :name, :date, :mp_rating, :time,
+    :url, :description, :themes, :budget, :actors
 
   def initialize
+    self.save
+  end
+
+  def save
     @@all << self
+  end
+
+  def all
+    @@all
   end
 
   def self.list_opening_month
@@ -14,17 +24,16 @@ class Movie
 
   # either return the movie or return false
   def self.find_by_position(position)
-    # index = position.to_i-1
+    index = position.to_i-1
 
-    case position
-    when "1"
-      puts "THOR RAGNAROK - NOV 3"
-      puts "thor description"
-    when "2"
-      puts "A BAD MOM'S CHRISTMAS - NOV 3"
-      puts "mom's description"
+    if self.all.size > index
+      self.all[index]
     else
-      # puts ""
+      false
     end
+  end
+
+  def display_details
+    puts "#{self.name}"
   end
 end
