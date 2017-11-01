@@ -1,4 +1,4 @@
-class ComingSoon::CLI
+class CLI
 
   def call
     intro
@@ -12,16 +12,19 @@ class ComingSoon::CLI
 
   def opening_month
     puts "Opening this month:"
-    ComingSoon::Movie.list_opening_month
+    Movie.list_opening_month
   end
 
   def menu
     input = nil
     while (input != "exit")
-      puts "Which movie would you like to know more about? (Enter movie number)"
+      puts "Enter the movie number to get a description or list to display the list of movies, or exit"
       input = gets.strip
 
-      Movie.find_by_position(input)
+      movie = Movie.find_by_position(input)
+      if movie != false
+        # movie.display_details
+      end
 
     end
 

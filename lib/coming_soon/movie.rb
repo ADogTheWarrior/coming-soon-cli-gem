@@ -1,4 +1,4 @@
-class ComingSoon::Movie
+class Movie
   @@all = []
 
   def initialize
@@ -12,17 +12,19 @@ class ComingSoon::Movie
     puts "4. MURDER EXPRESS - NOV 10"
   end
 
-  # either return the position or return false
+  # either return the movie or return false
   def self.find_by_position(position)
+    # index = position.to_i-1
+
     case position
     when "1"
-      puts "1. THOR RAGNAROK - NOV 3"
+      puts "THOR RAGNAROK - NOV 3"
       puts "thor description"
     when "2"
-      puts "2. A BAD MOM'S CHRISTMAS - NOV 3"
+      puts "A BAD MOM'S CHRISTMAS - NOV 3"
       puts "mom's description"
     else
-
-    #serach @@all
+      # puts ""
+    end
   end
 end

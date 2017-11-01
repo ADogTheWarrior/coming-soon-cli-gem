@@ -1,3 +1,3 @@
-class ComingSoon::Scraper
+class Scraper
 
 end
