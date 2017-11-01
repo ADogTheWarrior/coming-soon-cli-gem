@@ -2,7 +2,9 @@ class Movie
   @@all = []
   attr_accessor :name, :date, :mp_rating, :time, :description, :themes, :actors, :url
 
-  def initialize
+  def initialize(name, date)
+    @name = name
+    @date = date
     self.save
   end
 
@@ -10,19 +12,14 @@ class Movie
     @@all << self
   end
 
-  def all
+  def self.all
     @@all
   end
 
-  def self.list_opening_month
-    self.all.each do |movie|
-
+  def self.display_movies
+    self.all.each.with_index(1) do |movie, position|
+      puts "#{position}. #{movie.name} - #{movie.date}"
     end
-    # display list
-    puts "1. THOR RAGNAROK - NOV 3"
-    puts "2. A BAD MOM'S CHRISTMAS - NOV 3"
-    puts "3. DADDY'S HOME 2 - NOV 10"
-    puts "4. MURDER EXPRESS - NOV 10"
   end
 
   # either return the movie or return false
@@ -36,16 +33,13 @@ class Movie
     end
   end
 
-  def display_general
-  end
-
   def display_details
     puts "Title: #{self.name}"
     puts "Release Date: #{self.date}"
-    puts "Rating: #{self.mp_rating}"
-    puts "Run Time: #{self.time}"
-    # puts "Themes: #{self.themes}"
-    puts "Description: #{self.description}"
-    # puts "Actors: #{self.actors}"
+    # puts "Rating: #{self.mp_rating}"
+    # puts "Run Time: #{self.time}"
+    # # puts "Themes: #{self.themes}" TODO
+    # puts "Description: #{self.description}"
+    # # puts "Actors: #{self.actors}" TODO
   end
 end
