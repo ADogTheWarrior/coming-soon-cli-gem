@@ -1,8 +1,6 @@
 # ComingSoon
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/coming_soon`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem's purpose is to have a cli that can be used to look at new movies coming out soon. It'll scrap imdb.com for movies and then give more information about any selected movie
 
 ## Installation
 
