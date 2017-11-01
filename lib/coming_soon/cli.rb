@@ -8,12 +8,13 @@ class CLI
 
   def intro
     puts "Welcome to Coming Soon, the gem!"
-    # initialize movies!
+    Scraper.this_week
+    Scraper.this_month
   end
 
   def opening_month
     puts "Opening this month:"
-    Movie.list_opening_month
+    Movie.display_movies
   end
 
   def menu
@@ -39,10 +40,3 @@ class CLI
     end
   end
 end
-
-
-
-
-# would you like details of a particular move, which one =>
-# display list =>
-# option to keep asking until quit
