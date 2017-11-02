@@ -28,14 +28,14 @@ class CLI
         if movie != false
           movie.display_details
         else
-          puts "Please try different input"
+          puts "Please try a different input"
         end
       elsif input == "list"
         opening_month
       elsif input == "exit"
         puts "Thank you for using Coming Soon, the gem!"
       else
-        puts "Please try different input"
+        puts "Please try a different input"
       end
     end
   end
