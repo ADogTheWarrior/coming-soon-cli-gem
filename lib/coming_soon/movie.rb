@@ -47,8 +47,16 @@ class Movie
     puts "Release Date: #{self.date}"
     puts "Rating: #{self.mp_rating}"
     puts "Run Time: #{self.time}"
-    puts "Themes: #{self.themes}"
+    puts "Themes:"
+    puts_array_helper(self.themes)
     puts "Description: #{self.description}"
-    puts "Actors: #{self.actors}"
+    puts "Actors:"
+    puts_array_helper(self.actors)
+  end
+
+  def puts_array_helper(array)
+    array.each do |item|
+      puts "    #{item}"
+    end
   end
 end
