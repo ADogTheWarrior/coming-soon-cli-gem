@@ -11,6 +11,12 @@ class Movie
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
+  def self.create_from_collection(movies_array)
+    movies_array.each do |movie|
+      Movie.new(movie)
+    end
+  end
+
   def save
     @@all << self
   end
@@ -39,10 +45,10 @@ class Movie
   def display_details
     puts "Title: #{self.name}"
     puts "Release Date: #{self.date}"
-    # puts "Rating: #{self.mp_rating}"
-    # puts "Run Time: #{self.time}"
-    # # puts "Themes: #{self.themes}" TODO
-    # puts "Description: #{self.description}"
-    # # puts "Actors: #{self.actors}" TODO
+    puts "Rating: #{self.mp_rating}"
+    puts "Run Time: #{self.time}"
+    puts "Themes: #{self.themes}"
+    puts "Description: #{self.description}"
+    puts "Actors: #{self.actors}"
   end
 end
