@@ -8,8 +8,8 @@ class CLI
 
   def intro
     puts "Welcome to Coming Soon, the gem!"
-    Scraper.this_week
-    Scraper.this_month
+    Movie.create_from_collection(Scraper.this_week)
+    Movie.create_from_collection(Scraper.this_month)
   end
 
   def opening_month
