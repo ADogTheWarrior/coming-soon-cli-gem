@@ -3,6 +3,14 @@ class Movie
   attr_accessor :name, :date, :mp_rating, :time, :description, :themes, :actors, :url
 
   def initialize(movie_hash)
+    @name = ""
+    @date = ""
+    @mp_rating = ""
+    @time = ""
+    @description = ""
+    @themes = [""]
+    @actors = [""]
+    @url = ""
     movie_hash.each {|key, value| self.send(("#{key}="), value)}
     self.save
   end
