@@ -8,8 +8,8 @@ class Movie
     @mp_rating = ""
     @time = ""
     @description = ""
-    @themes = [""]
-    @actors = [""]
+    @themes = []
+    @actors = []
     @url = ""
     movie_hash.each {|key, value| self.send(("#{key}="), value)}
     self.save
@@ -63,8 +63,10 @@ class Movie
   end
 
   def puts_array_helper(array)
-    array.each do |item|
-      puts "    #{item}"
+    if array.size != 0
+      array.each do |item|
+        puts "    #{item}"
+      end
     end
   end
 end
