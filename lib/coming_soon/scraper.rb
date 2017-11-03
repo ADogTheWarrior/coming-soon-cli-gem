@@ -27,9 +27,8 @@ class Scraper
     return_array_of_hash = []
     movies = doc.css(".overview-top")
     movies.each do |movie|
-# binding.pry
       new_movie_hash = {}
-      new_movie_hash[:name] = movie.css("h4").css("a").first.attribute("title").text
+      new_movie_hash[:name] = movie.css("h4").css("a").first.attribute("title").text.split("(")[0].strip
       new_movie_hash[:url] = "http://www.imdb.com" + movie.css("h4").css("a").first.attribute("href").text
       if movie.css("p").children[1].attribute("title") != nil
         new_movie_hash[:mp_rating] = movie.css("p").children[1].attribute("title").value
@@ -42,18 +41,30 @@ class Scraper
     return_array_of_hash
   end
 
-  def self.get_details(movie_url)
+  def self.get_details(movie)
     puts "Scraping..."
-    doc = Nokogiri::HTML(open(movie_url))
-    attributes_hash = {}
+    doc = Nokogiri::HTML(open(movie.url))
     # needs date, genres, actors
     # if no rating then the time is off
 
-    attributes_hash[:date] = "Nov 5"
-    # attributes_hash[:themes]
-    # attributes_hash[:actors]
-    # attributes_hash[:time]
-
-    attributes_hash
+    if movie.mp_rating != "Not Rated"
+      movie.time = doc.css(".subtext").children[5].children.text.strip
+      themes = doc.css(".subtext").css("a")
+      themes.each do |theme|
+        if theme.children.children.text != ""
+          movie.themes << theme.children.children.text
+        end
+      end
+    else
+      movie.time = doc.css(".subtext").children[1].children.text.strip
+      themes = doc.css(".subtext").css("a")
+      themes.each do |theme|
+        if theme.children.children.text != ""
+          movie.themes << theme.children.children.text
+        end
+      end
+    end
+    movie.date = doc.css(".subtext").children[-2].children.text.split("(")[0].strip
+    # movie.actors
   end
 end
