@@ -8,6 +8,7 @@ class CLI
   def intro
     puts "Welcome to Coming Soon, the gem!"
     Movie.create_from_collection(Scraper.this_month)
+    Scraper.get_dates
     Movie.all.each do |movie|
       Scraper.get_details(movie)
     end
