@@ -44,27 +44,24 @@ class Scraper
   def self.get_details(movie)
     puts "Scraping..."
     doc = Nokogiri::HTML(open(movie.url))
-    # needs date, genres, actors
-    # if no rating then the time is off
-
     if movie.mp_rating != "Not Rated"
       movie.time = doc.css(".subtext").children[5].children.text.strip
-      themes = doc.css(".subtext").css("a")
-      themes.each do |theme|
-        if theme.children.children.text != ""
-          movie.themes << theme.children.children.text
-        end
-      end
     else
       movie.time = doc.css(".subtext").children[1].children.text.strip
-      themes = doc.css(".subtext").css("a")
-      themes.each do |theme|
-        if theme.children.children.text != ""
-          movie.themes << theme.children.children.text
-        end
+    end
+    themes = doc.css(".subtext").css("a")
+    themes.each do |theme|
+      if theme.children.children.text != ""
+        movie.themes << theme.children.children.text
       end
     end
     movie.date = doc.css(".subtext").children[-2].children.text.split("(")[0].strip
-    # movie.actors
+    actors = doc.css(".credit_summary_item")[-1].css("a")
+    actors.each do |actor|
+      if actor.children.children.text != ""
+        movie.actors << actor.children.children.text
+      end
+    end
+    binding.pry
   end
 end
