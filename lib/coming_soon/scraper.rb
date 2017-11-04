@@ -18,6 +18,16 @@ class Scraper
     return_array_of_hash
   end
 
+  def self.get_dates
+    doc = Nokogiri::HTML(open("http://www.imdb.com/movies-coming-soon/"))
+    movies_dates = doc.css("h4")
+    date = ""
+    movies_dates.each do |movie|
+      movie.children.children.text
+binding.pry
+    end
+  end
+
   def self.get_details(movie)
     puts "Scraping..."
     doc = Nokogiri::HTML(open(movie.url))
@@ -28,7 +38,8 @@ class Scraper
     else
       movie.time = doc.css(".subtext").children[1].children.text.strip
     end
-    movie.date = doc.css(".subtext").children[-2].children.text.split("(")[0].strip
+    # this line of code below grabs dates that can be different than the dates on the index page
+    # movie.date = doc.css(".subtext").children[-2].children.text.split("(")[0].strip
     themes = doc.css(".subtext").css("a")
     themes.each do |theme|
       if theme.children.children.text != ""
