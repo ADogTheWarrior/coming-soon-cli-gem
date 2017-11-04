@@ -20,11 +20,19 @@ class Scraper
 
   def self.get_dates
     doc = Nokogiri::HTML(open("http://www.imdb.com/movies-coming-soon/"))
-    movies_dates = doc.css("h4")
     date = ""
-    movies_dates.each do |movie|
-      movie.children.children.text
-binding.pry
+    month = doc.css("h4").first.children.children.text.split(" ")[0]
+    movies_dates = doc.css("h4")
+    movies_dates.each do |item|
+      item_text = item.children.children.text.split("(")[0].strip
+      if item_text.include? month
+        date = item_text
+      else
+        movie = Movie.find_by_name(item_text)
+        if movie
+          movie.date = date
+        end
+      end
     end
   end
 
