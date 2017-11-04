@@ -62,6 +62,5 @@ class Scraper
         movie.actors << actor.children.children.text
       end
     end
-    binding.pry
   end
 end
