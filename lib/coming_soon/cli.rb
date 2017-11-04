@@ -1,5 +1,4 @@
 class CLI
-
   def call
     intro
     opening_month
@@ -8,7 +7,6 @@ class CLI
 
   def intro
     puts "Welcome to Coming Soon, the gem!"
-    # Movie.create_from_collection(Scraper.this_week)
     Movie.create_from_collection(Scraper.this_month)
     Movie.all.each do |movie|
       Scraper.get_details(movie)

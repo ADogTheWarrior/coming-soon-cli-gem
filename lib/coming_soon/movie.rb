@@ -12,11 +12,7 @@ class Movie
     @actors = []
     @url = ""
     movie_hash.each {|key, value| self.send(("#{key}="), value)}
-    self.save
-  end
-
-  def add_movie_attributes(attributes_hash)
-    attributes_hash.each {|key, value| self.send(("#{key}="), value)}
+    @@all << self
   end
 
   def self.create_from_collection(movies_array)
@@ -25,16 +21,12 @@ class Movie
     end
   end
 
-  def save
-    @@all << self
-  end
-
   def self.all
     @@all
   end
 
   def self.display_movies
-    self.all.each.with_index(1) do |movie, position|
+    @@all.each.with_index(1) do |movie, position|
       puts "#{position}. #{movie.name} - #{movie.date}"
     end
   end
@@ -42,9 +34,8 @@ class Movie
   # either return the movie or return false
   def self.find_by_position(position)
     index = position.to_i-1
-
-    if self.all.size > index
-      self.all[index]
+    if @@all.size > index
+      @@all[index]
     else
       false
     end
