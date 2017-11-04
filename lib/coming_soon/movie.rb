@@ -41,6 +41,16 @@ class Movie
     end
   end
 
+  # either return the movie or return false
+  def self.find_by_name(name)
+    @@all.each do |movie|
+      if movie.name == name
+        return movie
+      end
+    end
+    false
+  end
+
   def display_details
     puts "Title: #{self.name}"
     puts "Release Date: #{self.date}"
