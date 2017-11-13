@@ -3,15 +3,14 @@ class Movie
   attr_accessor :name, :date, :mp_rating, :time, :description, :themes, :actors, :url
 
   def initialize(movie_hash)
-    @name = ""
-    @date = ""
-    @mp_rating = ""
-    @time = ""
-    @description = ""
-    @themes = []
-    @actors = []
-    @url = ""
-    movie_hash.each {|key, value| self.send(("#{key}="), value)}
+    @name = movie_hash[:name] || ""
+    @date = movie_hash[:date] || ""
+    @mp_rating = movie_hash[:mp_rating] || ""
+    @time = movie_hash[:time] || ""
+    @description = movie_hash[:description] || ""
+    @themes = movie_hash[:themes] || []
+    @actors = movie_hash[:actors] || []
+    @url = movie_hash[:url] || ""
     @@all << self
   end
 
@@ -34,6 +33,7 @@ class Movie
   # either return the movie or return false
   def self.find_by_position(position)
     index = position.to_i-1
+  binding.pry
     if @@all.size > index
       @@all[index]
     else
@@ -50,7 +50,6 @@ class Movie
     end
     false
   end
-
   def display_details
     puts "Title: #{self.name}"
     puts "Release Date: #{self.date}"

@@ -13,6 +13,7 @@ class Scraper
         new_movie_hash[:mp_rating] = "Not Rated"
       end
       new_movie_hash[:description] = movie.css(".outline").text.strip
+    # binding.pry
       return_array_of_hash << new_movie_hash
     end
     return_array_of_hash
